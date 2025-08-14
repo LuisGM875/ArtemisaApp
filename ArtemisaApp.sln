@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36105.17 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtemisaApp", "ArtemisaApp\ArtemisaApp.csproj", "{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6E1DC3-DB85-4DB9-AD73-4247FCED57AB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2B290F4-54DE-41DE-B151-E12D28307FF5}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArtemisaApp.View.EditUser"
+             BackgroundColor="#2B2929"
+             Title="Editar Usuario">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="0">
+            <!-- Barra superior con botón de regreso -->
+            
+
+            <!-- Formulario de edición de usuario -->
+            <VerticalStackLayout Spacing="18" Margin="0,30,0,0">
+                <Label Text="Nombre"
+                       TextColor="White"
+                       FontSize="16"/>
+                <Frame CornerRadius="15"
+                       Padding="0"
+                       BackgroundColor="White"
+                       BorderColor="#2196F3"
+                       HasShadow="False"
+                       HeightRequest="50">
+                    <Entry Placeholder="Nombre"
+                           Text="{Binding Name}"
+                           BackgroundColor="Transparent"
+                           TextColor="Black"
+                           HeightRequest="50"
+                           VerticalOptions="Center"
+                           Margin="10,0"/>
+                </Frame>
+
+                <Label Text="Apellido"
+                       TextColor="White"
+                       FontSize="16"/>
+                <Frame CornerRadius="15"
+                       Padding="0"
+                       BackgroundColor="White"
+                       BorderColor="#2196F3"
+                       HasShadow="False"
+                       HeightRequest="50">
+                    <Entry Placeholder="Apellido"
+                           Text="{Binding LastName}"
+                           BackgroundColor="Transparent"
+                           TextColor="Black"
+                           HeightRequest="50"
+                           VerticalOptions="Center"
+                           Margin="10,0"/>
+                </Frame>
+
+
+                <Label Text="Foto"
+                   TextColor="White"
+                   FontSize="16"/>
+                <Frame CornerRadius="65"
+                   Padding="0"
+                   BackgroundColor="White"
+                   BorderColor="#2196F3"
+                   HasShadow="False"
+                   HeightRequest="130"
+                   WidthRequest="130"
+                   HorizontalOptions="Center">
+                    <Image Source="{Binding PhotoPath}"
+                       HeightRequest="130"
+                       WidthRequest="130"
+                       Aspect="AspectFill"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Clip="EllipseGeometry Center='65,65' RadiusX='65' RadiusY='65'" />
+                </Frame>
+                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                    <Button Text="Tomar Foto"
+                        Command="{Binding TakePhotoCommand}"
+                        BackgroundColor="#0084FF"
+                        TextColor="White"
+                        FontSize="14"
+                        CornerRadius="10"
+                        HeightRequest="40"/>
+                                <Button Text="Seleccionar Archivo"
+                        Command="{Binding PickPhotoCommand}"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        FontSize="14"
+                        CornerRadius="10"
+                        HeightRequest="40"/>
+                </HorizontalStackLayout>
+
+
+                <Button Text="Guardar"
+                        Command="{Binding SaveCommand}"
+                        BackgroundColor="#0084FF"
+                        TextColor="White"
+                        FontSize="20"
+                        CornerRadius="15"
+                        HeightRequest="55"
+                        Margin="0,30,0,0"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

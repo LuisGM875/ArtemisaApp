@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:ArtemisaApp.Converters"
+             x:Class="ArtemisaApp.View.Principal"
+             BackgroundColor="#CCCCCC">
+    <Grid RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0" Spacing="0">
+            <Border HeightRequest="100" StrokeThickness="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#1E3C72" Offset="0.0" />
+                        <GradientStop Color="#2A7DE1" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding FullName, StringFormat='Bienvenido, {0}'}"
+                           FontSize="20"
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           Margin="20,0,0,0"
+                           Grid.Column="0"/>
+                    <ContentView Grid.Column="1" Padding="0,0,20,0" VerticalOptions="Center">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowMenuCommand}" />
+                        </ContentView.GestureRecognizers>
+                        <Grid>
+                            <Image Source="{Binding PhotoPath}"
+                                   WidthRequest="36"
+                                   HeightRequest="36"
+                                   Aspect="AspectFill"
+                                   IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" 
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Clip="EllipseGeometry Center='18,18' RadiusX='18' RadiusY='18'" />
+                            <Path Data="M12,12A5,5 0 1,0 12,2A5,5 0 1,0 12,12ZM12,14C9.33,14 4,15.34 4,18V20H20V18C20,15.34 14.67,14 12,14Z"
+                                  Fill="Black"
+                                  WidthRequest="36"
+                                  HeightRequest="36"
+                                  IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}, ConverterParameter=invert}" />
+                        </Grid>
+                    </ContentView>
+                </Grid>
+            </Border>
+
+            <Border HeightRequest="40" BackgroundColor="#2A7DE1" StrokeThickness="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Transferir"
+                            Command="{Binding TransferCommand}"
+                            FontSize="16"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            Margin="20,0,0,0"
+                            Grid.Column="0"/>
+                </Grid>
+            </Border>
+
+            <Grid Padding="0,20,0,20">
+                <Frame BackgroundColor="#232121"
+                       CornerRadius="10"
+                       Margin="20,0,20,0"
+                       Padding="20"
+                       HasShadow="False"
+                       VerticalOptions="Start">
+                    <VerticalStackLayout>
+                        <Label Text="CUENTAS EN PESOS"
+                               TextColor="White"
+                               FontSize="14"/>
+                        <Label Text="{Binding Wallet, StringFormat='${0:F2}'}"
+                               TextColor="White"
+                               FontSize="32"
+                               HorizontalOptions="End"
+                               Margin="0,10,0,0"/>
+                        <Label Text="Saldo disponible"
+                               TextColor="White"
+                               FontSize="14"
+                               HorizontalOptions="End"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Frame Grid.Row="1"
+               BackgroundColor="#232121"
+               CornerRadius="0"
+               Margin="0"
+               Padding="20,10"
+               HasShadow="True"
+               VerticalOptions="End"
+               HeightRequest="300">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Ultimos Movimientos"
+                       TextColor="White"
+                       FontSize="16"/>
+                <CollectionView ItemsSource="{Binding Transactions}"
+                                VerticalOptions="FillAndExpand"
+                                BackgroundColor="Transparent">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding DateFormatted}" TextColor="White" FontSize="14"/>
+                                    <Label Text="{Binding TimeFormatted}" TextColor="White" FontSize="12"/>
+                                </VerticalStackLayout>
+                                <Label Text="{Binding Amount, StringFormat='${0:F2}'}"
+                                       TextColor="White"
+                                       FontSize="14"
+                                       Grid.Column="1"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Corrige los errores de sintaxis y uso de propiedades no válidas en AbsoluteLayout y Frame -->
+        <AbsoluteLayout IsVisible="{Binding IsMenuVisible}"
+                        InputTransparent="False"
+                        BackgroundColor="#80000000"> <!-- Quita el comentario de aquí -->
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent"
+                InputTransparent="False">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseMenuCommand}" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Frame
+                BackgroundColor="White"
+                BorderColor="#2A7DE1"
+                CornerRadius="8"
+                Padding="0"
+                HasShadow="True"
+                WidthRequest="180"
+                AbsoluteLayout.LayoutBounds="0.95,0.08,180,100"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <VerticalStackLayout>
+                    <Button Text="Editar usuario"
+                            Command="{Binding EditUserCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="#2A7DE1"/>
+                    <Button Text="Cerrar sesión"
+                            Command="{Binding LogoutCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="Red"/>
+                </VerticalStackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </Grid>
+</ContentPage>
